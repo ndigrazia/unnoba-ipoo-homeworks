@@ -33,8 +33,10 @@ public class Horno {
 		
 		h.setBuilder(new PanBlancoBuilder());
 		h.construirPan();
-		
-		System.out.println(h.getPan());
+
+		Pan p = h.getPan();
+
+		System.out.println(p);
 	}
 	
 }

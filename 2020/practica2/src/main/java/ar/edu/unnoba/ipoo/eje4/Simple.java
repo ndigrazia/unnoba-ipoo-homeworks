@@ -1,10 +1,10 @@
 package ar.edu.unnoba.ipoo.eje4;
 
-public class Elemento extends Pieza {
+public class Simple extends Pieza {
 
 	private float precio;
 	
-	public Elemento(String numero, String nombre, int tiempoManoObraEnMinutos, float precio) {
+	public Simple(String numero, String nombre, int tiempoManoObraEnMinutos, float precio) {
 		super(numero, nombre, tiempoManoObraEnMinutos);
 		this.precio = precio;
 	}

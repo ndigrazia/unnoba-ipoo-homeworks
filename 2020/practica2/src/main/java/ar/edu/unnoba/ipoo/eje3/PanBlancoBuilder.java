@@ -9,6 +9,10 @@ public class PanBlancoBuilder extends PanBuilder  {
 				" la parte central del grano");
 	}
 
+	public void amasar() {
+		System.out.println("amasar estilo pan blanco()");
+	};
+
 	public Pan getPan() {
 		return panBlanco;
 	}
