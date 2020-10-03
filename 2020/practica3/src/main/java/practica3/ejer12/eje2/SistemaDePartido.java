@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.stream.Stream;
 
 public class SistemaDePartido {
 	
@@ -27,8 +28,7 @@ public class SistemaDePartido {
 	 * Retorna el estadio con mayor capacidad de espectadores
 	 */
 	public Estadio estadioConMayorCapacidad() {
-		Estadio r = estadios
-				.stream()
+		Estadio r = estadios.stream()
 				.max(Comparator.comparing(Estadio::getCapacidad))
 				.orElseThrow(NoSuchElementException::new);
 		return r;
@@ -39,12 +39,11 @@ public class SistemaDePartido {
 	 * la suma de la capacidad de cada estadio de cada partido. 
 	 */
 	public int cantidadTotalEspectadores() {
-		int t = estadios
-				.stream().mapToInt(e -> e.getCapacidad())
+		return estadios.stream()
+				.mapToInt(e -> e.getCapacidad())
 				.sum();
-		return t;
 	}
-	
+
 	/**
 	 * Retorna la suma recaudada en el partido que se pasa como par�metro
 	 */

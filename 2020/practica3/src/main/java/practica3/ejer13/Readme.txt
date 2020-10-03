@@ -25,12 +25,14 @@ c) Operaciones intermedias
 map(), filter(), distinct(), sorted(), limit(), skip()
 
 d) Finalizadores u Operaciones terminales
-forEach(), toArray(), reduce(), collect(), min(), max(), count(), anyMatch(), allMatch(), noneMatch(), findFirst(), findAny()
+forEach(), toArray(), reduce(), collect(), min(), sum(), max(), count(), anyMatch(), allMatch(), noneMatch(), findFirst(), findAny()
 
 e) ¿A que se refiere con que los Streams son Lazy?
 Streams are lazy because intermediate operations are not evaluated until terminal operation is invoked. Each intermediate operation creates a new stream, stores the provided operation/function and return the new stream. The pipeline accumulates these newly created streams.
 The time when terminal operation is called, traversal of streams begins and the associated function is performed one by one.
 
 f) Orden de ejecución.
+
+Obtener streams.Operaciones intermedias.Finalizadores u Operaciones terminales
 
 g) Buenas prácticas de uso

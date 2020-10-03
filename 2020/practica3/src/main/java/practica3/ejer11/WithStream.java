@@ -12,14 +12,12 @@ public class WithStream {
         List<String> lines = Arrays.asList("Java", "PHP", "C++");
 
         WithStream ws = new WithStream();
-        System.out.println("WithStream: " + ws.getFilterOutput(lines,"PHP"));
+        System.out.println("WithStream: " + ws.getFilterOutput( lines.stream(),"PHP"));
     }
 
-    public List<String> getFilterOutput(List<String> lines, String filter) {
-        List<String> result = lines.stream()
-                .filter(e ->!filter.equals(e))
+    public List<String> getFilterOutput(Stream<String> lines, String fil) {
+        return lines.filter(e ->!fil.equals(e))
                 .collect(Collectors.toList());
-        return result;
     }
 
 }
