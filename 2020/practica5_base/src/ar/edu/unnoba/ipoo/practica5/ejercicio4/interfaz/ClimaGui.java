@@ -5,8 +5,13 @@ import java.awt.EventQueue;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.GregorianCalendar;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.Random;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -24,10 +29,15 @@ import ar.edu.unnoba.util.City;
 
 public class ClimaGui implements Observer {
 
+	private ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(1);
+
 	private EstacionMeteorologica estacion = new EstacionMeteorologica();
 
+	private static final String CIUDAD = "Pergamino";
+	private static final int TIEMPO = 10;
+
 	//TODO instanciar el servicio WeatherService para Pergamino
-	private WeatherService services = new WeatherService(City.Pergamino, 1);
+	//private WeatherService services = new WeatherService(City.Pergamino, 1);
 
 	private JLabel actual = new JLabel();
 	private BotonPanel botonPanel = new BotonPanel();
@@ -97,16 +107,32 @@ public class ClimaGui implements Observer {
 		//TODO Agregar observador del evento del servicio:
 		//services.addObserver(this);
 		//iniciar el servicio WeatherService
-		services.addObserver(this);
-		services.start();
+		//services.addObserver(this);
+		//services.start();
+
+		this.scheduledExecutorService.scheduleAtFixedRate(new Runnable() {
+			public void run() {
+				Clima clima = new Clima();
+
+				//Humedad y presión al objeto clima
+				clima.setCiudad(CIUDAD);
+				clima.setTemperatura(new Random().nextInt(60));
+				clima.setFecha(GregorianCalendar.getInstance().getTime());
+				clima.setHumedad(new Random().nextInt(100));
+				clima.setPresion(new Random().nextInt(10));
+
+				ClimaGui.this.update(null, clima);
+  			}
+		}, 0L, TIEMPO, TimeUnit.SECONDS);
 	}
 	
 	private void desregistrarYPararServicio() {
 		//TODO Eliminar observador del evento del servicio:
 		//services.deleteObserver(this);
 		//detener el servicio WeatherService
-		services.stop();
-		services.deleteObserver(this);
+		//services.stop();
+		//services.deleteObserver(this);
+		this.scheduledExecutorService.shutdownNow();
 	}
 	
 	private void inicializarPaneles() {
@@ -147,21 +173,11 @@ public class ClimaGui implements Observer {
 	}
 
 	public void update(Observable o, Object arg) {
-		Channel channel = ((WeatherService) o).getChannel();
-		
-		Clima clima = new Clima();
-
-		//TODO Asignar ciudad, temperatura, fecha actual,
-		//Humedad y presión al objeto clima
-		clima.setCiudad(channel.getLocation().getCity());
-		clima.setTemperatura(channel.getItem().getCondition().getTemp());
-		clima.setFecha(channel.getItem().getCondition().getDate());
-		clima.setHumedad(channel.getAtmosphere().getHumidity());
-		clima.setPresion(channel.getAtmosphere().getPressure());
+		//Channel channel = ((WeatherService) o).getChannel();
+		Clima clima = (Clima) arg;
 
 		estacion.addClima(clima);
-		
-		actual.setText(clima.toString());
+		actual.setText("Temperatura : " + String.valueOf(clima.getTemperatura()) + " Grados.");
 	}
 
 }
