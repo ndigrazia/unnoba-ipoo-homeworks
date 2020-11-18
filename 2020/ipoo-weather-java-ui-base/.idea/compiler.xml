@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="ipoo-weather-java-ui-example" />
+        <module name="ipoo-weather-java-ui-base" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="ipoo-weather-java-ui-base" target="8" />
+      <module name="ipoo-weather-java-ui-example" target="8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
