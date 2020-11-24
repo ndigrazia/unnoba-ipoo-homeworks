@@ -12,7 +12,7 @@ public class WeatherServiceExample implements Observer {
     private WeatherService service;
 
     public WeatherServiceExample() {
-        service = new WeatherService(City.Pergamino, 2);
+        service = new WeatherService(City.Pergamino, 10);
     }
 
     public void start() {

@@ -29,7 +29,7 @@ import ar.edu.unnoba.util.City;
 
 public class ClimaGui implements Observer {
 
-	private ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(1);
+	//private ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(1);
 
 	private EstacionMeteorologica estacion = new EstacionMeteorologica();
 
@@ -127,11 +127,11 @@ public class ClimaGui implements Observer {
 	}
 	
 	private void desregistrarYPararServicio() {
-		//TODO Eliminar observador del evento del servicio:
-		//services.deleteObserver(this);
-		//detener el servicio WeatherService
-		//services.stop();
-		//services.deleteObserver(this);
+			//TODO Eliminar observador del evento del servicio:
+			//services.deleteObserver(this);
+			//detener el servicio WeatherService
+			//services.stop();
+			//services.deleteObserver(this);
 		this.scheduledExecutorService.shutdownNow();
 	}
 	
