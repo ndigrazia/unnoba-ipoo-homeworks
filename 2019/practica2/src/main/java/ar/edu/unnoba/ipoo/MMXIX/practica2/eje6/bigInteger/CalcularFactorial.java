@@ -7,6 +7,7 @@ public class CalcularFactorial {
 	public static void main(String[] args) {
 		System.out.println("FactoriaL 50: " + factorial(BigInteger.valueOf(50)));
 		System.out.println("FactoriaL 100: " + factorial(BigInteger.valueOf(100)));
+		System.out.println("FactoriaL 200: " + factorial(BigInteger.valueOf(200)));
 	}
 	
 	public static BigInteger factorial(BigInteger n) {

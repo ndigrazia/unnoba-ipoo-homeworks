@@ -1,6 +1,8 @@
 package ar.edu.unnoba.ipoo.MMXIX.practica2.eje8;
 
 import java.time.Instant;
+import java.time.ZoneId;
+import java.util.TreeSet;
 
 //An Instant represents a point in time (similar to java.util.Date) with nanoseconds precision
 //(unlike the old Date which has milliseconds precision).
@@ -14,6 +16,17 @@ public class InstantExample {
 		
 		// Output format is ISO-8601
 		System.out.println(instant);	
+
+		TreeSet<String> sz= new TreeSet<>(ZoneId.getAvailableZoneIds());
+
+        System.out.println("Number of zones: " + sz.size());
+        System.out.println("");
+
+        for (String zone : sz) {
+            System.out.println(zone);
+        }
+
+		System.out.println(instant.atZone(ZoneId.of("America/Argentina/Buenos_Aires")));
 	}
 	
 }
